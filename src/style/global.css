@@ -1,0 +1,8 @@
+body{
+    cursor: url('../../assets/Aero windows 11.cur');
+}  
+
+img{
+    image-rendering: pixelated;
+    -webkit-user-drag: none;
+}
