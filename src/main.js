@@ -9,20 +9,6 @@ let ctx = cnv.getContext('2d');
 sprites.push(gameWorld);
 sprites.push(player);
 
-let api = false;
-
-if(api){
-    let a = 0;
-
-    const buscar = async () =>{
-        a = await fetch("http://localhost/conexao.php");
-        a = await a.json();
-        console.log(a[0].posit_x);
-    }
-
-    buscar();
-}
-
 player.x = 256;
 player.y = 48;
 
@@ -50,3 +36,18 @@ const render = () =>{
 }
 
 loop();
+/*
+const atualizarBanco = async () =>{
+    await fetch("http://localhost/player.php", {
+        method: "post",
+        headers: {
+            "Content-Type": "application/json"
+        }, body: JSON.stringify({
+            playerxa: 16,
+            playerya: 16
+        })
+    });
+};
+
+atualizarBanco();
+*/
