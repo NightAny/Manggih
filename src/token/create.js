@@ -1,30 +1,18 @@
 const criarToken = async (e) => {
     e.preventDefault();
     
-    let teste = await fetch("http://localhost/cadastro.php", {
+    let cadastro = await fetch("https://wellyngton-souza.000webhostapp.com/manggih/cadastrar.php", {
         method: "post",
         headers: {
             "Content-Type": "application/json"
-        }, body: JSON.stringify({ playerxa: e.target[0].value, playerya: e.target[1].value })
+        }, body: JSON.stringify({ playernome: e.target[0].value, playersenha: e.target[1].value })
     });
 
-    console.log(teste);
-    /*
-    let matriz = JSON.parse(localStorage.getItem('game_data')) || {};
+    cadastro = await cadastro.json();
 
-    if (matriz.dados == undefined) {
-        matriz.dados = [];
+    if(cadastro.response){
+        window.location.href = "login.html";
     }
-
-    matriz.dados.push(
-        [ e.target[0].value, e.target[1].value ]
-    );
-
-    let minhaArrayJSON = JSON.stringify(matriz);
-
-    localStorage.setItem('game_data', minhaArrayJSON);
-    alert("Usuario " + e.target[0].value + " criado com Sucesso !!!");
-    */
 }
 
 document.getElementById("user").addEventListener('submit', criarToken);

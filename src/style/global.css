@@ -1,6 +1,10 @@
 body{
     cursor: url('../../assets/Aero windows 11.cur');
-}  
+}
+
+canvas{
+    image-rendering: pixelated;
+}
 
 img{
     image-rendering: pixelated;
