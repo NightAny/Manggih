@@ -12,7 +12,7 @@ sprites.push(gameWorld);
 sprites.push(player);
 
 (async ()=>{
-    let PositPlayer = await fetch("https://wellyngton-souza.000webhostapp.com/manggih/playerPosicao.php", {
+    let PositPlayer = await fetch("http://localhost/server/playerPosicao.php", {
         method: "post",
         headers: {
             "Content-Type": "application/json"
@@ -51,9 +51,30 @@ const render = () =>{
 
 loop();
 
+
+const socket = new WebSocket('ws://localhost/server/');
+
+socket.addEventListener('open', (event) => {
+    console.log('Conexão aberta');
+    socket.send('Olá, servidor WebSocket!');
+});
+
+socket.addEventListener('message', (event) => {
+    console.log('Mensagem recebida:', event.data);
+});
+
+socket.addEventListener('close', (event) => {
+    if (event.wasClean) {
+        console.log('Conexão fechada limpa');
+    } else {
+        console.log('Conexão interrompida');
+    }
+});
+
+/*
 const atualizarBanco = async () =>{
     // atualiza minha coord
-    await fetch("https://wellyngton-souza.000webhostapp.com/manggih/player.php", {
+    await fetch("http://localhost/server/player.php", {
         method: "post",
         headers: {
             "Content-Type": "application/json"
@@ -65,7 +86,7 @@ const atualizarBanco = async () =>{
     });
     
     // busca friends
-    let friendsData = await fetch("https://wellyngton-souza.000webhostapp.com/manggih/friends.php",{
+    let friendsData = await fetch("http://localhost/server/friends.php",{
         method: "post",
         headers: {
             "Content-Type": "application/json"
@@ -103,4 +124,4 @@ const atualizarBanco = async () =>{
     }
 };
 
-setInterval(atualizarBanco, 100);
+setInterval(atualizarBanco, 100);*/

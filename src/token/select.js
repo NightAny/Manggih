@@ -1,21 +1,19 @@
 const criptografarDados = (e) =>{
-    if (window.crypto && window.crypto.subtle) {
-        let texto = e;
-        // Gerar uma chave aleatória de 256 bits (32 bytes)
-        let chave = sjcl.random.randomWords(8);
-        // Gerar um vetor de inicialização (IV) aleatório de 96 bits (12 bytes)
-        let iv = sjcl.random.randomWords(3);
+    let texto = e;
+    // Gerar uma chave aleatória de 256 bits (32 bytes)
+    let chave = sjcl.random.randomWords(8);
+    // Gerar um vetor de inicialização (IV) aleatório de 96 bits (12 bytes)
+    let iv = sjcl.random.randomWords(3);
 
-        let aes = new sjcl.cipher.aes(chave);
-        let textoBytes = sjcl.codec.utf8String.toBits(texto);
-        let cripto = sjcl.mode.gcm.encrypt(aes, textoBytes, iv);
+    let aes = new sjcl.cipher.aes(chave);
+    let textoBytes = sjcl.codec.utf8String.toBits(texto);
+    let cripto = sjcl.mode.gcm.encrypt(aes, textoBytes, iv);
 
-        let textoCriptografado = sjcl.codec.base64.fromBits(cripto);
+    let textoCriptografado = sjcl.codec.base64.fromBits(cripto);
 
-        console.log("Texto criptografado: " + textoCriptografado);
+    console.log("Texto criptografado: " + textoCriptografado);
 
-        return [textoCriptografado, chave, iv];
-    }
+    return [textoCriptografado, chave, iv];
 }
 
 const cacheLogin = (e) =>{
@@ -35,7 +33,7 @@ const cacheLogin = (e) =>{
 const buscarDados = async (e) =>{
     e.preventDefault();
 
-    let busca = await fetch("https://wellyngton-souza.000webhostapp.com/manggih/login.php",{
+    let busca = await fetch("http://localhost/server/login.php",{
         method: "post",
         headers: {
             "Content-Type": "application/json"

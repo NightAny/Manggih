@@ -1,7 +1,7 @@
 const criarToken = async (e) => {
     e.preventDefault();
     
-    let cadastro = await fetch("https://wellyngton-souza.000webhostapp.com/manggih/cadastrar.php", {
+    let cadastro = await fetch("http://localhost/server/cadastrar.php", {
         method: "post",
         headers: {
             "Content-Type": "application/json"
